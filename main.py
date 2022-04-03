@@ -1,4 +1,12 @@
 from Agent import Agent
-Sara = Agent(1,170)
+from Model import Model
+
+Sara = Agent(1, 170)
 text = Sara.listen()
-Sara.speak(text)
+# Sara.speak(text)
+print(text)
+model = Model()
+response = model.process_text(text)
+print(response)
+Sara.speak(response)
+
