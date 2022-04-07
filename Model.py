@@ -53,8 +53,9 @@ class Model(resource):
             return 'I will play the song soon.'
         elif genre_resp == 'wiki':
             wiki_resp = search_wiki(tokens,1)
+            # print('type wiki : ',type(wiki_resp))
             # print('wiki_resp',wiki_resp)
-            return wiki_resp[0][1]
+            return wiki_resp
 
 
 
