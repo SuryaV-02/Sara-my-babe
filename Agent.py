@@ -1,7 +1,10 @@
 import pyttsx3
 import speech_recognition as sr
 import pyaudio
-
+# For soft speak
+from gtts import gTTS
+from playsound import playsound
+import os
 
 class Agent(object):
     def __init__(self, gender: int, speech_rate: int) -> object:
@@ -13,6 +16,12 @@ class Agent(object):
         self.agent.setProperty('rate', self.speech_rate)
         self.r = sr.Recognizer()
         print('Created agent')
+
+    def soft_speak(self,text):
+        tts = gTTS(text=text, lang="en",slow=False)
+        filename = os.path.dirname(__file__) + "\\voice.mp3"
+        tts.save(filename)
+        playsound(filename)
 
     def speak(self, text):
         self.agent.say(text)

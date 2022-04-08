@@ -56,6 +56,8 @@ class Model(resource):
             # print('type wiki : ',type(wiki_resp))
             # print('wiki_resp',wiki_resp)
             return wiki_resp
+        elif genre_resp == 'badperson':
+            return random.choice(self.r_harsh_response)
 
 
 
