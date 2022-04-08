@@ -47,8 +47,8 @@ class Model(resource):
         genre_resp = self.get_genre(tokens)
 
         if genre_resp == 'activity':
-            return random.choice(self.r_pre_fillers) + ' ' + random.choice(self.r_my_activities) + ', ' + random.choice(
-                self.r_post_fillers)
+            return random.choice(self.r_pre_fillers) + ' ' + random.choice(self.r_my_activities) + ', ' + \
+                   random.choice(self.r_post_fillers)
         elif genre_resp == 'song':
             return 'I will play the song soon.'
         elif genre_resp == 'wiki':

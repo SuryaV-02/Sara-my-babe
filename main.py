@@ -3,7 +3,7 @@ from Model import Model
 
 # Sara = Agent(1, 170)
 # text = Sara.listen()
-text = "What is Zebra crossing"
+text = "Whats your passion"
 print(text)
 model = Model()
 response = model.process_text(text)
