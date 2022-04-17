@@ -2,9 +2,10 @@ import wikipedia
 import nltk
 from PyDictionary import PyDictionary
 from nltk.corpus import stopwords
-
+from playsound import playsound
 from Utils import *
-
+from datetime import date, datetime
+import random
 
 def search_wiki(tokens, summary_length):
     tokens = nltk.pos_tag(tokens)
@@ -65,4 +66,20 @@ def search_local_dictionary(query):
             return "".join(first_pair[1])
     except:
         return "NULL"
+
+def get_current_date_time():
+    days = ['default','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+    months = ["default","January","Febuary","March","April","May","June","July","August","September","October","November","December"]
+    _today = date.today()
+    year = str(_today.year)
+    month = months[_today.month]
+    _date = _today.day
+    hour = datetime.now().strftime('%H')
+    minute = datetime.now().strftime('%M')
+    return(hour, minute, _date, month, year)
+
+def get_romantic():
+    playsound('titanic_bgm.mp3')
+    return
+
 

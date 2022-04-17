@@ -1,6 +1,7 @@
 import random
 from typing import List
 
+import accessibilities
 from resource import resource
 import nltk
 from nltk import word_tokenize
@@ -44,8 +45,8 @@ class Model(resource):
 
     def process_text(self,text):
         tokens = self.get_raw_tokens(text)
+        # print(tokens)
         genre_resp = self.get_genre(tokens)
-
         if genre_resp == 'activity':
             return random.choice(self.r_pre_fillers) + ' ' + random.choice(self.r_my_activities) + ', ' + \
                    random.choice(self.r_post_fillers)
@@ -57,7 +58,16 @@ class Model(resource):
             # print('wiki_resp',wiki_resp)
             return wiki_resp
         elif genre_resp == 'badperson':
+
             return random.choice(self.r_harsh_response)
+        elif genre_resp == 'love':
+            # accessibilities.get_romantic()
+            return random.choice(self.r_romantic)
+        elif genre_resp == 'dt':
+            hour,minute,date,month,year = accessibilities.get_current_date_time()
+            response = "It's {} {} {}, and is {} {} right now".format(month,date,year,hour,minute)
+            return response
+
 
 
 
