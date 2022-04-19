@@ -1,6 +1,3 @@
-from Agent import Agent
-from Model import Model
-
 import traceback
 import pyrebase
 
@@ -16,7 +13,7 @@ firebaseConfig = {
   "measurementId": "G-8B0Q4DZTKS"
 }
 
-Sara = Agent(1, 172)
+
 def signing_up():
     auth = firebase.auth()
     email = input('Enter Email : ')
@@ -42,30 +39,14 @@ def signing_in():
         traceback.print_exc()
         return 0
 
+
 firebase = pyrebase.initialize_app(firebaseConfig)
+
 print('Hello there, this is Sara, your personal assistant! Please sign up to get started!')
-Sara.speak('Hello there, this is Sara, your personal assistant! Please sign up to get started!')
-
-
-def recognize_person():
-    name = input('Name : ')
-    if signing_up()==1:
-        print(('Now, signin..'))
-        Sara.speak('Now, signin..')
-
-        if(signing_in()==1):
-            Sara.speak('Welcome Surya')
-            print('Welcome',name)
-    else:
-        print('Sorry, I cannot recognize you ..')
-        Sara.speak('Sorry, I cannot recognize you ..')
-
-print("Hello there, how can I help you?")
-Sara.speak("Hello there, how can I help you?")
-# text = Sara.listen()
-text = input()
-print(text)
-model = Model()
-response = model.process_text(text)
-print(response)
-Sara.speak(response)
+name = input('Name : ')
+if signing_up()==1:
+    print('Now, signin..')
+    if(signing_in()==1):
+        print('Welcome',name)
+else:
+    print('Sorry, I cannot recognize you ..')
