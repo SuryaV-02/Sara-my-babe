@@ -2,6 +2,8 @@ import pyttsx3
 import speech_recognition as sr
 import pyaudio
 # For soft speak
+import wolframalpha
+
 from gtts import gTTS
 from playsound import playsound
 import os
@@ -15,7 +17,7 @@ class Agent(object):
         self.agent.setProperty('voice', self.voice)
         self.agent.setProperty('rate', self.speech_rate)
         self.r = sr.Recognizer()
-        print('Created agent')
+        # print('Created agent')
 
     def soft_speak(self,text):
         tts = gTTS(text=text, lang="en",slow=False)
@@ -35,7 +37,13 @@ class Agent(object):
                 text = self.r.recognize_google(audio)
                 text = text.lower()
                 return text
-        except sr.RequestError as e:
-            print("Could not request results; {0}".format(e))
+        except TypeError as e:
+            # print("Could not request results; {0}".format(e))
+            # print('Nothing heard')
+            pass
+        except Exception as ex:
+            # print('Nothing heard 2')
+            return None
         except sr.UnknownValueError:
             print("unknown error occurred")
+            return None

@@ -4,6 +4,7 @@ from typing import List
 import accessibilities
 from resource import resource
 import nltk
+
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 from accessibilities import search_wiki

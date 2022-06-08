@@ -4,19 +4,19 @@ from Model import Model
 import traceback
 import pyrebase
 
-
 firebaseConfig = {
-  "apiKey": "AIzaSyBPxb07ns_mGf76YTQ0yXkGV6ytlXKolsc",
-  "authDomain": "sara-memory.firebaseapp.com",
-  "databaseURL": "https://sara-memory-default-rtdb.asia-southeast1.firebasedatabase.app",
-  "projectId": "sara-memory",
-  "storageBucket": "sara-memory.appspot.com",
-  "messagingSenderId": "356595803238",
-  "appId": "1:356595803238:web:d4e77f5d01acc8b939b9a7",
-  "measurementId": "G-8B0Q4DZTKS"
+    "apiKey": "AIzaSyBPxb07ns_mGf76YTQ0yXkGV6ytlXKolsc",
+    "authDomain": "sara-memory.firebaseapp.com",
+    "databaseURL": "https://sara-memory-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "projectId": "sara-memory",
+    "storageBucket": "sara-memory.appspot.com",
+    "messagingSenderId": "356595803238",
+    "appId": "1:356595803238:web:d4e77f5d01acc8b939b9a7",
+    "measurementId": "G-8B0Q4DZTKS"
 }
+firebase = pyrebase.initialize_app(firebaseConfig)
 
-Sara = Agent(1, 172)
+
 def signing_up():
     auth = firebase.auth()
     email = input('Enter Email : ')
@@ -42,30 +42,33 @@ def signing_in():
         traceback.print_exc()
         return 0
 
-firebase = pyrebase.initialize_app(firebaseConfig)
-print('Hello there, this is Sara, your personal assistant! Please sign up to get started!')
-Sara.speak('Hello there, this is Sara, your personal assistant! Please sign up to get started!')
-
 
 def recognize_person():
+    print('Please sign up to get started!')
+    Sara.speak('Please sign up to get started!')
     name = input('Name : ')
-    if signing_up()==1:
+    if signing_up() == 1:
         print(('Now, signin..'))
         Sara.speak('Now, signin..')
 
-        if(signing_in()==1):
+        if (signing_in() == 1):
             Sara.speak('Welcome Surya')
-            print('Welcome',name)
+            print('Welcome', name)
     else:
         print('Sorry, I cannot recognize you ..')
         Sara.speak('Sorry, I cannot recognize you ..')
 
+
+Sara = Agent(1, 172)
+model = Model()
+
 print("Hello there, how can I help you?")
 Sara.speak("Hello there, how can I help you?")
-# text = Sara.listen()
-text = input()
-print(text)
-model = Model()
-response = model.process_text(text)
-print(response)
-Sara.speak(response)
+while True:
+    text = Sara.listen()
+    # text = input("Enter your request : ")
+    print(text)
+    if text is not None:
+        response = model.process_text(text)
+        print(response)
+        Sara.speak(response)
